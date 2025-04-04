@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra HD 4K Smartphone - TechMarket</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Overlay Navigation Menu -->
+    <div id="overlay-nav" class="overlay-nav">
+        <div class="overlay-content">
+            <div class="close-btn" onclick="closeNav()">
+                <i class="fas fa-times"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-text">Tech<span class="highlight">Market</span></span>
+                    </a>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html" class="active">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <div class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </div>
+                    <div class="menu-icon" onclick="openNav()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Product Details</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <a href="products.html">Products</a>
+                <span class="separator">/</span>
+                <span class="current">Ultra HD 4K Smartphone</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-layout">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <img id="mainImage" src="images/product1.jpg" alt="Ultra HD 4K Smartphone">
+                        <div class="image-overlay">
+                            <div class="zoom-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thumbnail-images">
+                        <div class="thumbnail active" data-image="images/product1.jpg">
+                            <img src="images/product1.jpg" alt="Product Thumbnail 1">
+                        </div>
+                        <div class="thumbnail" data-image="images/product1-2.jpg">
+                            <img src="images/product1-2.jpg" alt="Product Thumbnail 2">
+                        </div>
+                        <div class="thumbnail" data-image="images/product1-3.jpg">
+                            <img src="images/product1-3.jpg" alt="Product Thumbnail 3">
+                        </div>
+                        <div class="thumbnail" data-image="images/product1-4.jpg">
+                            <img src="images/product1-4.jpg" alt="Product Thumbnail 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Info -->
+                <div class="product-info">
+                    <div class="product-badges">
+                        <span class="badge new">New</span>
+                        <span class="badge sale">10% Off</span>
+                    </div>
+                    <h1 class="product-title">Ultra HD 4K Smartphone</h1>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">24 Reviews</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">$799.99</span>
+                        <span class="old-price">$899.99</span>
+                    </div>
+                    <div class="product-availability in-stock">
+                        <i class="fas fa-check-circle"></i> In Stock
+                    </div>
+                    <div class="product-short-desc">
+                        <p>Experience the future with our revolutionary Ultra HD 4K Smartphone. Featuring a stunning 6.7-inch AMOLED display, powerful octa-core processor, and a professional-grade camera system that captures every detail.</p>
+                    </div>
+                    
+                    <div class="product-colors">
+                        <h3>Color:</h3>
+                        <div class="color-options">
+                            <div class="color-option active" style="background-color: #111;">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="color-option" style="background-color: #3C6E71;">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="color-option" style="background-color: #D9D9D9;">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="color-option" style="background-color: #F2CCC3;">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-storage">
+                        <h3>Storage:</h3>
+                        <div class="storage-options">
+                            <div class="storage-option">128GB</div>
+                            <div class="storage-option active">256GB</div>
+                            <div class="storage-option">512GB</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-quantity">
+                        <h3>Quantity:</h3>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" value="1" min="1" max="10" id="quantity">
+                            <button class="quantity-btn plus">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-primary add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-secondary buy-now">
+                            Buy Now
+                        </button>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">SKU:</span>
+                            <span class="meta-value">TM-SP-001</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Category:</span>
+                            <span class="meta-value">
+                                <a href="products.html?category=smartphones">Smartphones</a>
+                            </span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Tags:</span>
+                            <span class="meta-value">
+                                <a href="products.html?tag=4k">4K</a>,
+                                <a href="products.html?tag=smartphone">Smartphone</a>,
+                                <a href="products.html?tag=premium">Premium</a>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-share">
+                        <span>Share:</span>
+                        <div class="share-links">
+                            <a href="#" class="share-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="share-link"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="description">Description</button>
+                    <button class="tab-btn" data-tab="specifications">Specifications</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews (24)</button>
+                </div>
+                <div class="tabs-content">
+                    <div class="tab-panel active" id="description">
+                        <div class="product-description">
+                            <h2>Product Overview</h2>
+                            <p>The Ultra HD 4K Smartphone is designed for those who demand the best in mobile technology. Featuring cutting-edge hardware and software, this smartphone delivers exceptional performance, stunning visuals, and professional-grade photography capabilities.</p>
+                            
+                            <h3>Revolutionary Display</h3>
+                            <p>Immerse yourself in a 6.7-inch AMOLED display with Ultra HD 4K resolution. The edge-to-edge screen provides vibrant colors, deep blacks, and remarkable clarity, making everything from movies to games look spectacular. With a 120Hz refresh rate, scrolling and animations are incredibly smooth and responsive.</p>
+                            
+                            <h3>Powerful Performance</h3>
+                            <p>Powered by our latest octa-core processor and 8GB of RAM, the Ultra HD 4K Smartphone handles intensive tasks with ease. Whether you're multitasking between apps, playing graphics-intensive games, or editing 4K videos, this smartphone delivers smooth, lag-free performance.</p>
+                            
+                            <h3>Professional Camera System</h3>
+                            <p>Capture stunning photos and videos with our advanced quad-camera system. The 108MP main camera with optical image stabilization captures incredible detail, while the ultra-wide, telephoto, and macro lenses give you versatility for any shooting scenario. The 32MP front camera ensures your selfies are always sharp and detailed.</p>
+                            
+                            <h3>All-Day Battery Life</h3>
+                            <p>The 5000mAh battery provides enough power to keep you going throughout the day, even with heavy usage. When it's time to recharge, the 65W fast charging technology gets you back to 70% in just 30 minutes.</p>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="specifications">
+                        <div class="product-specifications">
+                            <table class="specs-table">
+                                <tr>
+                                    <th colspan="2">Display</th>
+                                </tr>
+                                <tr>
+                                    <td>Screen Size</td>
+                                    <td>6.7 inches</td>
+                                </tr>
+                                <tr>
+                                    <td>Resolution</td>
+                                    <td>3840 x 2160 pixels (4K)</td>
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>AMOLED, 120Hz, HDR10+</td>
+                                </tr>
+                                <tr>
+                                    <td>Protection</td>
+                                    <td>Corning Gorilla Glass Victus</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th colspan="2">Performance</th>
+                                </tr>
+                                <tr>
+                                    <td>Processor</td>
+                                    <td>Octa-core (1x3.0 GHz + 3x2.6 GHz + 4x2.0 GHz)</td>
+                                </tr>
+                                <tr>
+                                    <td>RAM</td>
+                                    <td>8GB LPDDR5</td>
+                                </tr>
+                                <tr>
+                                    <td>Storage</td>
+                                    <td>128GB / 256GB / 512GB UFS 3.1</td>
+                                </tr>
+                                <tr>
+                                    <td>Operating System</td>
+                                    <td>Android 12</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th colspan="2">Camera</th>
+                                </tr>
+                                <tr>
+                                    <td>Main Camera</td>
+                                    <td>108MP, f/1.8, OIS</td>
+                                </tr>
+                                <tr>
+                                    <td>Ultra-wide</td>
+                                    <td>12MP, f/2.2, 120° FOV</td>
+                                </tr>
+                                <tr>
+                                    <td>Telephoto</td>
+                                    <td>10MP, f/2.4, 3x optical zoom</td>
+                                </tr>
+                                <tr>
+                                    <td>Macro</td>
+                                    <td>5MP, f/2.4</td>
+                                </tr>
+                                <tr>
+                                    <td>Front Camera</td>
+                                    <td>32MP, f/2.2</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th colspan="2">Battery</th>
+                                </tr>
+                                <tr>
+                                    <td>Capacity</td>
+                                    <td>5000mAh</td>
+                                </tr>
+                                <tr>
+                                    <td>Charging</td>
+                                    <td>65W wired, 15W wireless</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th colspan="2">Dimensions</th>
+                                </tr>
+                                <tr>
+                                    <td>Size</td>
+                                    <td>160.8 x 78.1 x 7.7 mm</td>
+                                </tr>
+                                <tr>
+                                    <td>Weight</td>
+                                    <td>198g</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="reviews">
+                        <div class="product-reviews">
+                            <div class="reviews-summary">
+                                <div class="average-rating">
+                                    <div class="rating-number">4.5</div>
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <div class="rating-count">Based on 24 reviews</div>
+                                </div>
+                                <div class="rating-bars">
+                                    <div class="rating-bar">
+                                        <div class="rating-label">5 Stars</div>
+                                        <div class="bar-container">
+                                            <div class="bar" style="width: 65%;"></div>
+                                        </div>
+                                        <div class="rating-percentage">65%</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-label">4 Stars</div>
+                                        <div class="bar-container">
+                                            <div class="bar" style="width: 25%;"></div>
+                                        </div>
+                                        <div class="rating-percentage">25%</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-label">3 Stars</div>
+                                        <div class="bar-container">
+                                            <div class="bar" style="width: 7%;"></div>
+                                        </div>
+                                        <div class="rating-percentage">7%</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-label">2 Stars</div>
+                                        <div class="bar-container">
+                                            <div class="bar" style="width: 2%;"></div>
+                                        </div>
+                                        <div class="rating-percentage">2%</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-label">1 Star</div>
+                                        <div class="bar-container">
+                                            <div class="bar" style="width: 1%;"></div>
+                                        </div>
+                                        <div class="rating-percentage">1%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="user-reviews">
+                                <h3>Customer Reviews</h3>
+                                
+                                <!-- Review 1 -->
+                                <div class="review">
+                                    <div class="review-header">
+                                        <div class="reviewer">
+                                            <div class="reviewer-avatar">
+                                                <img src="images/user1.jpg" alt="User Avatar">
+                                            </div>
+                                            <div class="reviewer-info">
+                                                <div class="reviewer-name">John D.</div>
+                                                <div class="review-date">July 15, 2023</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="review-title">Incredible phone, worth every penny!</div>
+                                    <div class="review-content">
+                                        <p>I've been using this phone for about a month now and I'm extremely impressed. The display is stunning - watching 4K content is a whole new experience. The camera system is incredible, especially in low light. Battery life is excellent, easily lasting me a full day of heavy use. The fast charging is a game changer too.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Review 2 -->
+                                <div class="review">
+                                    <div class="review-header">
+                                        <div class="reviewer">
+                                            <div class="reviewer-avatar">
+                                                <img src="images/user2.jpg" alt="User Avatar">
+                                            </div>
+                                            <div class="reviewer-info">
+                                                <div class="reviewer-name">Sarah M.</div>
+                                                <div class="review-date">July 3, 2023</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="review-title">Great phone but battery could be better</div>
+                                    <div class="review-content">
+                                        <p>This is definitely one of the best phones I've ever owned. The camera quality is exceptional and the screen is beautiful. My only complaint is that with heavy use, especially gaming, the battery drains faster than I'd like. Still, the fast charging makes up for it somewhat.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Review 3 -->
+                                <div class="review">
+                                    <div class="review-header">
+                                        <div class="reviewer">
+                                            <div class="reviewer-avatar">
+                                                <img src="images/user3.jpg" alt="User Avatar">
+                                            </div>
+                                            <div class="reviewer-info">
+                                                <div class="reviewer-name">Michael T.</div>
+                                                <div class="review-date">June 28, 2023</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="review-title">Perfect for photography enthusiasts</div>
+                                    <div class="review-content">
+                                        <p>As a hobbyist photographer, I'm blown away by the camera system on this phone. The 108MP main camera captures incredible detail, and the telephoto lens is perfect for distant subjects. Night mode is particularly impressive. The phone itself is fast and responsive, and the display makes viewing your photos a joy.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="load-more">
+                                    <button class="btn btn-outline">Load More Reviews</button>
+                                </div>
+                            </div>
+                            
+                            <div class="review-form">
+                                <h3>Write a Review</h3>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="reviewRating">Your Rating</label>
+                                        <div class="rating-select">
+                                            <i class="far fa-star" data-rating="1"></i>
+                                            <i class="far fa-star" data-rating="2"></i>
+                                            <i class="far fa-star" data-rating="3"></i>
+                                            <i class="far fa-star" data-rating="4"></i>
+                                            <i class="far fa-star" data-rating="5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reviewTitle">Review Title</label>
+                                        <input type="text" id="reviewTitle" placeholder="Give your review a title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reviewContent">Review</label>
+                                        <textarea id="reviewContent" rows="5" placeholder="Write your review here"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Products -->
+            <div class="related-products">
+                <div class="section-header">
+                    <h2>Related Products</h2>
+                    <p>You might also like these products</p>
+                </div>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-badge hot">Hot</div>
+                        <div class="product-image">
+                            <img src="images/product2.jpg" alt="Product 2">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Wireless Headphones Pro</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(56)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$249.99</span>
+                                <span class="old-price">$319.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/product4.jpg" alt="Product 4">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Smart Watch Pro Series</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                                <span>(32)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$349.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <img src="images/product6.jpg" alt="Product 6">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Wireless Earbuds</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(15)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$129.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-badge sale">Sale</div>
+                        <div class="product-image">
+                            <img src="images/product8.jpg" alt="Product 8">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Smart Home Speaker</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                                <span>(21)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$99.99</span>
+                                <span class="old-price">$129.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-text">Tech<span class="highlight">Market</span></span>
+                    </div>
+                    <p class="footer-desc">Your trusted source for modern technology products. Best price and quality guaranteed.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html?category=phones">Smartphones</a></li>
+                        <li><a href="products.html?category=laptops">Laptops</a></li>
+                        <li><a href="products.html?category=headphones">Headphones</a></li>
+                        <li><a href="products.html?category=monitors">Monitors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley</li>
+                        <li><i class="fas fa-phone-alt"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@techmarket.com</li>
+                        <li><i class="fas fa-clock"></i> Monday - Saturday: 9:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechMarket. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/product-detail.js"></script>
+</body>
+</html>
