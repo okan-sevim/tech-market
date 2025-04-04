@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - TechMarket</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Overlay Navigation Menu -->
+    <div id="overlay-nav" class="overlay-nav">
+        <div class="overlay-content">
+            <div class="close-btn" onclick="closeNav()">
+                <i class="fas fa-times"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-text">Tech<span class="highlight">Market</span></span>
+                    </a>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html" class="active">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <div class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </div>
+                    <div class="menu-icon" onclick="openNav()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Products</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span class="current">Products</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-layout">
+                <!-- Filter Sidebar -->
+                <div class="filter-sidebar">
+                    <div class="sidebar-header">
+                        <h3>Filters</h3>
+                        <button class="filter-clear-btn" id="clearFilters">Clear All</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Categories</h4>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="smartphones" name="category" value="smartphones">
+                                <label for="smartphones">Smartphones</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="laptops" name="category" value="laptops">
+                                <label for="laptops">Laptops</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="headphones" name="category" value="headphones">
+                                <label for="headphones">Headphones</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="monitors" name="category" value="monitors">
+                                <label for="monitors">Monitors</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="accessories" name="category" value="accessories">
+                                <label for="accessories">Accessories</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-inputs">
+                            <div class="price-input">
+                                <span>$</span>
+                                <input type="number" placeholder="Min" id="priceMin">
+                            </div>
+                            <div class="price-separator">-</div>
+                            <div class="price-input">
+                                <span>$</span>
+                                <input type="number" placeholder="Max" id="priceMax">
+                            </div>
+                        </div>
+                        <button class="btn btn-small" id="applyPriceFilter">Apply</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Brand</h4>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="apple" name="brand" value="apple">
+                                <label for="apple">Apple</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="samsung" name="brand" value="samsung">
+                                <label for="samsung">Samsung</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="sony" name="brand" value="sony">
+                                <label for="sony">Sony</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="google" name="brand" value="google">
+                                <label for="google">Google</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="dell" name="brand" value="dell">
+                                <label for="dell">Dell</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Rating</h4>
+                        <div class="rating-filter">
+                            <div class="filter-option">
+                                <input type="radio" id="rating5" name="rating" value="5">
+                                <label for="rating5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="radio" id="rating4" name="rating" value="4">
+                                <label for="rating4">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    & Up
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="radio" id="rating3" name="rating" value="3">
+                                <label for="rating3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    & Up
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Products Content -->
+                <div class="products-content">
+                    <div class="products-header">
+                        <div class="products-count">Showing <span id="productCount">12</span> Products</div>
+                        <div class="products-sort">
+                            <label for="sortBy">Sort by:</label>
+                            <select id="sortBy">
+                                <option value="featured">Featured</option>
+                                <option value="newest">Newest</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Customer Rating</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="product-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-badge">New</div>
+                            <div class="product-image">
+                                <img src="images/product1.jpg" alt="Product 1">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Ultra HD 4K Smartphone</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(24)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$799.99</span>
+                                    <span class="old-price">$899.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-badge hot">Hot</div>
+                            <div class="product-image">
+                                <img src="images/product2.jpg" alt="Product 2">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Wireless Headphones Pro</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(56)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$249.99</span>
+                                    <span class="old-price">$319.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <div class="product-badge sale">Sale</div>
+                            <div class="product-image">
+                                <img src="images/product3.jpg" alt="Product 3">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Ultra Thin Gaming Laptop</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(18)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$1,299.99</span>
+                                    <span class="old-price">$1,499.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- More Products (4-9) -->
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product4.jpg" alt="Product 4">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Smart Watch Pro Series</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(32)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$349.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 5 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product5.jpg" alt="Product 5">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">4K HDR Smart TV</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(47)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$899.99</span>
+                                    <span class="old-price">$999.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 6 -->
+                        <div class="product-card">
+                            <div class="product-badge">New</div>
+                            <div class="product-image">
+                                <img src="images/product6.jpg" alt="Product 6">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Wireless Earbuds</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(15)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$129.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 7 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product7.jpg" alt="Product 7">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Professional DSLR Camera</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(38)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$1,499.99</span>
+                                    <span class="old-price">$1,699.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 8 -->
+                        <div class="product-card">
+                            <div class="product-badge sale">Sale</div>
+                            <div class="product-image">
+                                <img src="images/product8.jpg" alt="Product 8">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Smart Home Speaker</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(21)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$99.99</span>
+                                    <span class="old-price">$129.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 9 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product9.jpg" alt="Product 9">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Premium Bluetooth Speaker</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(29)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">$179.99</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-text">Tech<span class="highlight">Market</span></span>
+                    </div>
+                    <p class="footer-desc">Your trusted source for modern technology products. Best price and quality guaranteed.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html?category=phones">Smartphones</a></li>
+                        <li><a href="products.html?category=laptops">Laptops</a></li>
+                        <li><a href="products.html?category=headphones">Headphones</a></li>
+                        <li><a href="products.html?category=monitors">Monitors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley</li>
+                        <li><i class="fas fa-phone-alt"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@techmarket.com</li>
+                        <li><i class="fas fa-clock"></i> Monday - Saturday: 9:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechMarket. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>
