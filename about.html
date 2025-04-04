@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TechMarket</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Overlay Navigation Menu -->
+    <div id="overlay-nav" class="overlay-nav">
+        <div class="overlay-content">
+            <div class="close-btn" onclick="closeNav()">
+                <i class="fas fa-times"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-text">Tech<span class="highlight">Market</span></span>
+                    </a>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html" class="active">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <div class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </div>
+                    <div class="menu-icon" onclick="openNav()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>About Us</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span class="current">About Us</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-intro">
+                <div class="about-content">
+                    <div class="section-header">
+                        <h2>Who We Are</h2>
+                        <p>Innovation at the heart of everything we do</p>
+                    </div>
+                    <p class="about-text">TechMarket is a leading online retailer of cutting-edge technology products. Since our founding in 2015, we've been on a mission to make the latest tech accessible to everyone. We believe that technology has the power to transform lives, and we're passionate about bringing the best products to our customers.</p>
+                    <p class="about-text">What sets us apart is our commitment to quality, exceptional customer service, and our deep understanding of technology trends. We don't just sell products; we provide solutions that enhance people's digital lives.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10k+</div>
+                            <div class="stat-label">Happy Customers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Products</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Brand Partners</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-img.jpg" alt="TechMarket Team">
+                    <div class="image-shape"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Values</h2>
+                <p>The principles that guide us</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We're constantly looking for new and better ways to serve our customers and bring the latest technology to market.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Quality</h3>
+                    <p>We curate only the highest-quality products that meet our stringent standards for performance and reliability.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer Focus</h3>
+                    <p>Our customers are at the center of everything we do. We listen, learn, and deliver experiences that exceed expectations.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We operate with transparency and honesty in all our business practices and relationships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>The people behind TechMarket</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team1.jpg" alt="Team Member">
+                        <div class="member-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Johnson</h3>
+                        <p class="member-role">CEO & Founder</p>
+                        <p class="member-bio">With over 15 years of experience in the tech industry, Sarah leads our company with vision and passion.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team2.jpg" alt="Team Member">
+                        <div class="member-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <p class="member-role">CTO</p>
+                        <p class="member-bio">Michael oversees our technical operations and ensures we stay at the cutting edge of technology.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team3.jpg" alt="Team Member">
+                        <div class="member-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Emily Rodriguez</h3>
+                        <p class="member-role">Head of Marketing</p>
+                        <p class="member-bio">Emily brings our brand to life with creative marketing strategies and customer engagement initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Journey -->
+    <section class="journey-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Journey</h2>
+                <p>The evolution of TechMarket</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2015</div>
+                    <div class="timeline-content">
+                        <h3>The Beginning</h3>
+                        <p>TechMarket was founded with a simple online store featuring a small selection of smartphones and accessories.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2017</div>
+                    <div class="timeline-content">
+                        <h3>Expansion</h3>
+                        <p>We expanded our product range to include laptops, audio equipment, and smart home devices. Our customer base grew to 5,000+.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2019</div>
+                    <div class="timeline-content">
+                        <h3>New Headquarters</h3>
+                        <p>We moved to a larger office and warehouse space to accommodate our growing team and inventory. Launched 24/7 customer support.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3>International Expansion</h3>
+                        <p>TechMarket expanded operations to international markets, serving customers in Europe and Asia.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Today</div>
+                    <div class="timeline-content">
+                        <h3>Continuous Innovation</h3>
+                        <p>We continue to grow and innovate, always looking for new ways to improve the customer experience and bring the best tech products to market.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Reviews from people who trust us</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"I've been shopping with TechMarket for years now, and I've never been disappointed. Their product selection is always cutting-edge, and their customer service is outstanding."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="images/testimonial1.jpg" alt="Customer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Alex Morgan</h4>
+                            <p>Loyal Customer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"The team at TechMarket really knows their stuff. They helped me find the perfect laptop for my needs, and even followed up after my purchase to make sure I was satisfied."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="images/testimonial2.jpg" alt="Customer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Jessica Lee</h4>
+                            <p>Tech Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"Fast shipping, great prices, and quality products. I always check TechMarket first when I'm looking for new gadgets. They've earned my trust and loyalty."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="images/testimonial3.jpg" alt="Customer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Robert Kim</h4>
+                            <p>Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Experience TechMarket?</h2>
+                <p>Browse our collection of premium tech products and find your next favorite device.</p>
+                <div class="cta-buttons">
+                    <a href="products.html" class="btn btn-primary">Shop Now</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-text">Tech<span class="highlight">Market</span></span>
+                    </div>
+                    <p class="footer-desc">Your trusted source for modern technology products. Best price and quality guaranteed.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html?category=phones">Smartphones</a></li>
+                        <li><a href="products.html?category=laptops">Laptops</a></li>
+                        <li><a href="products.html?category=headphones">Headphones</a></li>
+                        <li><a href="products.html?category=monitors">Monitors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley</li>
+                        <li><i class="fas fa-phone-alt"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@techmarket.com</li>
+                        <li><i class="fas fa-clock"></i> Monday - Saturday: 9:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechMarket. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
