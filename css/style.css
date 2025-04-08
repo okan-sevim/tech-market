@@ -1808,27 +1808,45 @@ footer {
     background-color: var(--bg-dark);
 }
 
-.about-intro {
-    display: flex;
-    gap: 3rem;
-    align-items: center;
-}
+
 
 .about-content {
-    flex: 1;
+    max-width: 850px; /* İçeriğin maksimum genişliğini ayarla */
+    margin: 0 auto; /* Yatayda otomatik olarak ortala */
+    text-align: center; /* İçerideki metinleri ve başlığı ortala */
 }
 
-.about-text {
+/* İçerideki .section-header zaten ortalıydı, ama emin olalım */
+.about-content .section-header {
+    text-align: center;
+    margin-bottom: 2rem; /* Boşluğu ayarla */
+}
+/* Section header altındaki çizgi ortalansın */
+.about-content .section-header h2::after {
+     left: 50%;
+     transform: translateX(-50%);
+}
+
+
+/* Ortalanmış metinler için (opsiyonel, sola yaslı kalabilir) */
+.about-content .about-text {
+    text-align: left; /* Metin paragrafları sola yaslı kalsın */
+    /* veya text-align: center; */
     margin-bottom: 1.5rem;
     color: #b8b8d4;
     line-height: 1.8;
+    max-width: 700px; /* Metin satırlarının çok uzamasını engelle (isteğe bağlı) */
+    margin-left: auto;  /* Ortalamak için */
+    margin-right: auto; /* Ortalamak için */
 }
 
+/* İstatistikler bölümü de ortalansın */
 .about-stats {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     margin-top: 3rem;
+    justify-content: center; /* İstatistikleri ortala */
 }
 
 .stat-item {
@@ -3794,3 +3812,131 @@ footer .payment-methods {
 
 
 /* ================== //CHECKOUT RADIO BUTON DÜZELTMESİ SONU ================== */
+
+/* Form Doğrulama Hata Stilleri */
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: var(--accent-color); /* Kırmızı kenarlık */
+    box-shadow: 0 0 0 2px rgba(255, 94, 98, 0.2); /* Hafif kırmızı gölge */
+}
+
+.error-message {
+    color: var(--accent-color); /* Kırmızı hata mesajı rengi */
+    font-size: 0.85rem; /* Küçük yazı boyutu */
+    display: block; /* Her zaman görünür (içerik yoksa boşluk olmaz) */
+    min-height: 1em; /* İçerik olmasa bile küçük bir yükseklik bırakır */
+    margin-top: 5px; /* Üstteki input ile arasına boşluk */
+}
+
+/* Select (Dropdown) Seçeneklerinin Stilleri */
+.form-group select option {
+    background-color: var(--bg-light, #141428); /* Koyu bir arka plan rengi (var olan değişken veya direkt renk) */
+    color: var(--text-color, #ffffff); /* Açık renk yazı */
+    /* Not: Padding gibi bazı stiller <option> üzerinde her tarayıcıda çalışmayabilir. */
+}
+
+/* Seçili değeri gösteren select kutusunun stilini teyit edelim */
+.form-group select {
+    background-color: rgba(255, 255, 255, 0.05); /* Zaten böyle olmalı */
+    color: white; /* Seçili değerin rengi */
+    /* İsteğe bağlı: Tarayıcı varsayılan okunu gizleyip özel ok eklemek */
+     /* appearance: none;
+     -webkit-appearance: none;
+     -moz-appearance: none; */
+     /* background-image: url('data:image/svg+xml;...'); */ /* SVG ok ikonu */
+     /* background-position: right 15px center;
+     background-repeat: no-repeat;
+     background-size: 10px; */
+}
+
+/* ================== CHECKOUT ADIM GEÇİŞ EFEKTİ (Basitleştirilmiş) ================== */
+
+.checkout-form {
+    position: relative; /* Konumlandırma referansı */
+    /* Geçiş sırasında yüksekliğin sabit kalması için bir min-height gerekebilir, içeriğe göre ayarlayın */
+    /* min-height: 600px; */
+}
+
+.checkout-step {
+    /* Başlangıç stilleri (gizli durum) */
+    opacity: 0;
+    position: absolute; /* Adımları üst üste bindir */
+    width: 100%;
+    top: 0;
+    left: 0;
+    visibility: hidden; /* Erişilebilirlik ve tıklama engelleme */
+    z-index: 1; /* Aktif olmayanlar altta */
+
+    /* Geçiş Efektleri */
+    transition: opacity 0.4s ease-in-out, visibility 0s linear 0.4s; /* Opaklık bitince gizle */
+}
+
+.checkout-step.active {
+    /* Aktif stil (görünür durum) */
+    opacity: 1;
+    position: relative; /* Normal akışa dön, yer kaplasın */
+    visibility: visible; /* Görünür yap */
+    z-index: 2; /* Aktif olan üste çıksın */
+
+    /* Geçiş Efektleri (Görünür hale gelirken) */
+    transition: opacity 0.4s ease-in-out; /* Sadece opaklık geçişi */
+}
+
+
+/* İletişim Formu Başlığı Ortalaması */
+.contact-form-section .section-header {
+    text-align: center; /* Zaten merkezde olmalı ama teyit edelim */
+    margin-bottom: 3rem;
+}
+.contact-form-section .section-header h2::after {
+    left: 50%;
+    transform: translateX(-50%); /* Başlık altı çizgiyi ortala */
+}
+
+
+
+/* İletişim Formunun Kendisi Ortalandı */
+.contact-form {
+    /* flex: 1; - Kaldırıldı */
+    max-width: 750px; /* Formun maksimum genişliği */
+    margin: 0 auto; /* Formu yatayda ortala */
+}
+
+
+
+.contact-form .form-row .form-group {
+    /* flex: 1; (Zaten var) */
+     min-width: 200px; /* Çok daralmasını engelle */
+}
+
+
+/* ================== //CONTACT PAGE ORTALAMA STİLLERİ SONU ================== */
+
+/* Newsletter Form Buton Boyut Ayarı (Genel) */
+.newsletter-form button {
+    /* Genişliği otomatik ayarla, padding ile boyut ver */
+    width: auto;
+    /* Yatay padding'i ayarla (input padding'ine yakın) */
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    /* Dikey padding (input ile aynı yükseklik için ayarlanabilir) */
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    white-space: nowrap; /* Yazı kaymasını engelle */
+    flex-shrink: 0; /* Daralmasını engelle */
+    /* Yüksekliği input ile eşitlemek için (daha sağlam yöntem) */
+    height: auto; /* Yüksekliği padding belirlesin */
+    line-height: normal; /* Satır yüksekliğini sıfırla */
+    box-sizing: border-box; /* Padding ve border dahil */
+}
+
+/* Newsletter Input Alanı (Yükseklik eşitleme için) */
+.newsletter-form input {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    height: auto; /* Yüksekliği padding belirlesin */
+    line-height: normal;
+    box-sizing: border-box;
+    /* Gerekirse input ve butona sabit bir height verilebilir, örn: height: 48px; */
+}

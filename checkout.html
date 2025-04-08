@@ -91,38 +91,46 @@
                                 <div class="form-group">
                                     <label for="firstName">First Name</label>
                                     <input type="text" id="firstName" required>
+                                    <small class="error-message"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="lastName">Last Name</label>
                                     <input type="text" id="lastName" required>
+                                    <small class="error-message"></small>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" required>
+                                <small class="error-message"></small>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
                                 <input type="tel" id="phone" required>
+                                <small class="error-message"></small>
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" id="address" required>
+                                <small class="error-message"></small>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="city">City</label>
                                     <input type="text" id="city" required>
+                                    <small class="error-message"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="state">State/Province</label>
-                                    <input type="text" id="state" required>
+                                    <input type="text" id="state">
+                                    <small class="error-message"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="zip">Zip/Postal Code</label>
                                     <input type="text" id="zip" required>
+                                    <small class="error-message"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="country">Country</label>
@@ -133,6 +141,7 @@
                                         <option value="UK">United Kingdom</option>
                                         <option value="TR">Turkey</option>
                                     </select>
+                                    <small class="error-message"></small>
                                 </div>
                             </div>
                         </div>
@@ -560,6 +569,158 @@
                  });
              }
 
+            // --- Doğrulama Yardımcı Fonksiyonları ---
+            function setError(element, message) {
+                const formGroup = element.closest('.form-group'); // En yakın .form-group'u bul
+                const errorDisplay = formGroup?.querySelector('.error-message'); // Hata mesajı alanını bul
+                if(formGroup) formGroup.classList.add('error'); // Hata class'ı ekle
+                if(errorDisplay) errorDisplay.textContent = message; // Mesajı yaz
+            }
+
+            function clearError(element) {
+                const formGroup = element.closest('.form-group');
+                const errorDisplay = formGroup?.querySelector('.error-message');
+                if(formGroup) formGroup.classList.remove('error');
+                 if(errorDisplay) errorDisplay.textContent = ''; // Mesajı temizle
+            }
+
+            function isValidEmail(email) {
+                // Basit email format kontrolü
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            // --- Kargo Formu Doğrulama Fonksiyonu ---
+            function validateShippingForm() {
+                let isValid = true; // Başlangıçta form geçerli kabul edilir
+
+                // Alanları Seç
+                const firstName = document.getElementById('firstName');
+                const lastName = document.getElementById('lastName');
+                const email = document.getElementById('email');
+                const phone = document.getElementById('phone');
+                const address = document.getElementById('address');
+                const city = document.getElementById('city');
+                const zip = document.getElementById('zip');
+                const country = document.getElementById('country');
+                // Opsiyonel alanlar için de seçici eklenebilir (örn: state)
+
+                 // Tüm gerekli alanları bir diziye koyalım
+                 const requiredFields = [firstName, lastName, email, phone, address, city, zip, country];
+
+                 // 1. Boş Alan Kontrolü
+                 requiredFields.forEach(field => {
+                     if(field){ // Element varsa kontrol et
+                        clearError(field); // Önce eski hataları temizle
+                        if (field.value.trim() === '') {
+                            setError(field, 'This field is required.');
+                            isValid = false;
+                        }
+                     }
+                 });
+
+                // 2. Email Format Kontrolü
+                 if (email && email.value.trim() !== '' && !isValidEmail(email.value.trim())) {
+                     clearError(email); // Önceki hatayı temizle (boş değilse)
+                     setError(email, 'Please enter a valid email address.');
+                     isValid = false;
+                 }
+
+                 // 3. Diğer Kontroller (Opsiyonel - Telefon, Zip vb.)
+                 // Örneğin basit bir zip kodu kontrolü (sadece sayı, 5 karakter varsayımı):
+                 if (zip && zip.value.trim() !== '' && !/^\d{5}$/.test(zip.value.trim())) {
+                      clearError(zip);
+                      // setError(zip, 'Please enter a valid 5-digit zip code.');
+                      // isValid = false; // Şimdilik sadece örnek, hata vermeyebiliriz
+                 }
+
+                return isValid; // Form geçerliyse true, değilse false döner
+            }
+
+            // --- Ödeme Formu Doğrulama Fonksiyonu ---
+            function validatePaymentForm() {
+                let isValid = true;
+                const creditCardSelected = document.getElementById('creditCard')?.checked;
+
+                // Sadece kredi kartı seçiliyse doğrula
+                if (creditCardSelected) {
+                    const cardNumber = document.getElementById('cardNumber');
+                    const expiryDate = document.getElementById('expiryDate');
+                    const cvc = document.getElementById('cvc');
+                    const paymentFields = [cardNumber, expiryDate, cvc];
+
+                    // 1. Boş Alan Kontrolü
+                    paymentFields.forEach(field => {
+                        if(field) { // Element varsa kontrol et
+                            clearError(field); // Önceki hataları temizle
+                            if (field.value.trim() === '') {
+                                setError(field, 'This field is required.');
+                                isValid = false;
+                            }
+                        }
+                    });
+
+                     // 2. Kart Numarası Formatı (Basit Kontrol - Sadece Sayı ve Uzunluk)
+                     if (cardNumber && cardNumber.value.trim() !== '' && !/^\d{13,19}$/.test(cardNumber.value.replace(/\s/g, ''))) {
+                         // Boşlukları kaldırıp sadece sayı ve 13-19 hane arası kontrolü
+                         clearError(cardNumber);
+                         setError(cardNumber, 'Please enter a valid card number.');
+                         isValid = false;
+                     }
+
+                     // 3. Son Kullanma Tarihi Formatı (MM / YY)
+                     if (expiryDate && expiryDate.value.trim() !== '' && !/^(0[1-9]|1[0-2])\s?\/\s?\d{2}$/.test(expiryDate.value.trim())) {
+                         clearError(expiryDate);
+                         setError(expiryDate, 'Please use MM / YY format.');
+                         isValid = false;
+                     }
+                     // İsteğe bağlı: Geçmiş tarih kontrolü de eklenebilir
+
+                     // 4. CVC Formatı (3 veya 4 Hane Sayı)
+                     if (cvc && cvc.value.trim() !== '' && !/^\d{3,4}$/.test(cvc.value.trim())) {
+                         clearError(cvc);
+                         setError(cvc, 'Please enter a valid CVC (3 or 4 digits).');
+                         isValid = false;
+                     }
+                }
+                // PayPal veya başka bir yöntem seçiliyse, bu fonksiyon şimdilik her zaman true dönecek
+                // İleride PayPal vb. için ek kontroller eklenebilir.
+
+                // Fatura adresi checkbox'ı işaretli değilse, fatura adresini de doğrula
+                if (!document.getElementById('sameAsShipping')?.checked) {
+                     if (!validateBillingForm()) { // Ayrı bir fatura doğrulama fonksiyonu çağır
+                          isValid = false;
+                     }
+                }
+
+                return isValid;
+            }
+
+            // --- Fatura Adresi Doğrulama Fonksiyonu (GEREKLİ) ---
+            function validateBillingForm() {
+                 let isValid = true;
+                 // Fatura adresi alanlarını seç
+                 const billingFirstName = document.getElementById('billingFirstName');
+                 const billingLastName = document.getElementById('billingLastName');
+                 const billingAddress = document.getElementById('billingAddress');
+                 const billingCity = document.getElementById('billingCity');
+                 const billingZip = document.getElementById('billingZip');
+                 const billingCountry = document.getElementById('billingCountry');
+                 // Gerekli fatura alanları
+                 const requiredBillingFields = [billingFirstName, billingLastName, billingAddress, billingCity, billingZip, billingCountry];
+
+                 requiredBillingFields.forEach(field => {
+                      if(field){
+                           clearError(field);
+                           if(field.value.trim() === ''){
+                                setError(field, 'This field is required for billing.');
+                                isValid = false;
+                           }
+                      }
+                 });
+                 // Burada da email, zip formatı gibi ek kontroller yapılabilir.
+                 return isValid;
+            }
 
             // --- Olay Dinleyicileri (Event Listeners) ---
 
@@ -592,19 +753,43 @@
                 billingAddressForm.style.display = sameAsShippingCheckbox.checked ? 'none' : 'block';
             }
 
-            // Butonlar
+            // Butonlar (Olay Dinleyicisi Güncellemesi)
             if (btnToPayment) {
                 btnToPayment.addEventListener('click', () => {
-                    // Form doğrulama eklenebilir
-                    navigateToStep('step-payment');
+                    const isFormValid = validateShippingForm(); // Formu doğrula
+
+                    if (isFormValid) { // Sadece form geçerliyse ilerle
+                        navigateToStep('step-payment');
+                    } else {
+                        // Opsiyonel: Genel bir hata mesajı gösterilebilir veya ilk hatalı alana scroll yapılabilir
+                        console.log("Shipping form has errors.");
+                        // En üstteki hatalı alana odaklan (örnek)
+                        const firstError = document.querySelector('#step-shipping .form-group.error input, #step-shipping .form-group.error select');
+                        firstError?.focus();
+                    }
                 });
             }
             if (btnToReview) {
-                btnToReview.addEventListener('click', () => {
-                    // Form doğrulama eklenebilir
-                    populateReviewStep(); // Review adımını doldur
-                    navigateToStep('step-review');
-                });
+                // Önceki listener'ı kaldır (tekrar eklenmesini önlemek için)
+                const oldHandler = window.navigateToReviewHandler; // Eski handler'ı referans al (varsa)
+                if(oldHandler) btnToReview.removeEventListener('click', oldHandler);
+
+                // Yeni handler fonksiyonu tanımla
+                window.navigateToReviewHandler = function() { // Global scope'a ekleyerek referans alınabilir yapalım
+                    const isPaymentFormValid = validatePaymentForm(); // Ödeme formunu doğrula
+
+                    if (isPaymentFormValid) { // Sadece ödeme formu geçerliyse ilerle
+                        populateReviewStep(); // Review adımını doldur
+                        navigateToStep('step-review'); // Review adımına git
+                    } else {
+                        console.log("Payment/Billing form has errors.");
+                         // En üstteki hatalı alana odaklan (örnek)
+                        const firstError = document.querySelector('#step-payment .form-group.error input, #step-payment .form-group.error select');
+                        firstError?.focus();
+                    }
+                }
+                // Yeni listener'ı ekle
+                btnToReview.addEventListener('click', window.navigateToReviewHandler);
             }
             if (btnPlaceOrder) {
                 // Doğrudan form submit yerine click ile kontrol ediyoruz
@@ -623,6 +808,82 @@
             // --- İlk Yükleme ---
             updateOrderSummary(); // Sayfa yüklendiğinde sipariş özetini doldur
             updateCartCount(cart); // Sayfa yüklendiğinde header sepet sayısını güncelle
+
+            // --- Input Formatlama ---
+
+            const expiryDateInput = document.getElementById('expiryDate');
+
+            if (expiryDateInput) {
+                expiryDateInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, ''); // Sadece rakamları al
+                    let formattedValue = '';
+
+                    if (value.length > 0) {
+                        // İlk 2 rakamı al (Ay)
+                        formattedValue += value.substring(0, 2);
+                    }
+                    if (value.length >= 2) {
+                        // 2 rakamdan sonra otomatik / ekle
+                        formattedValue += ' / ';
+                        // Sonraki 2 rakamı al (Yıl)
+                        formattedValue += value.substring(2, 4);
+                    }
+
+                    e.target.value = formattedValue;
+
+                    // İsteğe bağlı: İmleci sona taşı (bazen formatlamada kayabilir)
+                    // Bu kısım bazen mobil cihazlarda sorun çıkarabilir, dikkatli test edilmeli.
+                    // e.target.setSelectionRange(formattedValue.length, formattedValue.length);
+
+                     // Hata varsa ve kullanıcı yazmaya devam ediyorsa hatayı temizle
+                     if (formattedValue.length > 0) {
+                         clearError(e.target);
+                     }
+                });
+
+                 // Odak kaybedildiğinde formatı tekrar kontrol et (örneğin eksik / varsa)
+                 expiryDateInput.addEventListener('blur', function(e) {
+                     let value = e.target.value.replace(/\D/g, '');
+                     if (value.length === 4) { // Sadece 4 rakam girilmişse
+                          e.target.value = value.substring(0, 2) + ' / ' + value.substring(2, 4);
+                     }
+                     // Burada geçerlilik kontrolü de yapılabilir (validatePaymentForm çağrılabilir)
+                 });
+            }
+
+            // Opsiyonel: Kredi Kartı Numarası Formatlama (her 4 rakamda boşluk)
+            const cardNumberInput = document.getElementById('cardNumber');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, ''); // Sadece rakamlar
+                    let formattedValue = '';
+                    for (let i = 0; i < value.length; i++) {
+                        if (i > 0 && i % 4 === 0) {
+                            formattedValue += ' '; // Her 4 rakamda boşluk ekle
+                        }
+                        formattedValue += value[i];
+                    }
+                     // Maksimum uzunluk (örn: 16 hane + 3 boşluk = 19 karakter)
+                     e.target.value = formattedValue.substring(0, 19);
+
+                     if (formattedValue.length > 0) {
+                         clearError(e.target);
+                     }
+                });
+            }
+
+            // Opsiyonel: CVC Formatlama (Sadece sayı ve maksimum 4 hane)
+            const cvcInput = document.getElementById('cvc');
+             if(cvcInput) {
+                 cvcInput.addEventListener('input', function(e) {
+                     let value = e.target.value.replace(/\D/g, '');
+                     e.target.value = value.substring(0, 4); // Max 4 hane
+
+                      if (value.length > 0) {
+                         clearError(e.target);
+                     }
+                 });
+             }
 
         }); // DOMContentLoaded Sonu
     </script>
