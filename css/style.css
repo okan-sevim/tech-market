@@ -56,7 +56,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 100;
     background: rgba(11, 11, 25, 0.8);
     /* backdrop-filter can cause issues in some browsers */
     /* backdrop-filter: blur(10px); */
@@ -298,6 +298,48 @@ header {
 .hero-buttons {
     display: flex;
     gap: 1rem;
+    margin-top: 2rem;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 100;
+}
+
+.hero-buttons .btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 120px;
+    max-width: 180px;
+    text-align: center;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.hero-buttons .btn-primary {
+    background: linear-gradient(135deg, #766cf1, #4dabf7);
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 66, 248, 0.4);
+}
+
+.hero-buttons .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-buttons a {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 100;
+    cursor: pointer !important;
 }
 
 .hero-image {
@@ -823,10 +865,28 @@ footer {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlarda alt alta geçsin */
+    gap: 30px 40px; /* Dikey ve yatay boşluklar (Satırlar arası daha az, sütunlar arası daha fazla) */
+    margin-bottom: 50px;
+    /* justify-content: space-between; */ /* Kaldırılabilir veya flex-start olarak ayarlanabilir */
+}
+
+/* Footer Sütunları */
+.footer-column {
+    flex: 1 1 200px; /* Esneklik: Büyüyebilir, küçülebilir, temel genişlik 200px */
+    /* min-width: 200px; */ /* flex-basis ile değiştirildi */
+    /* max-width: 25%; */ /* Opsiyonel: Geniş ekranlarda çok yayılmasını engeller */
+}
+
+/* İlk sütun (Logo/Açıklama) biraz daha geniş olabilir (Opsiyonel) */
+.footer-column:first-child {
+    flex: 1.5 1 250px; /* Biraz daha fazla büyüme payı ve temel genişlik */
+}
+
+/* Son sütun (Subscribe) */
+.footer-column:last-child {
+     flex: 1 1 280px; /* Abonelik formu için biraz daha temel genişlik */
 }
 
 .footer-column h3 {
@@ -924,41 +984,32 @@ footer {
     font-size: 1.5rem;
 }
 
-/* Page Title */
+/* Page Title (Header boşluğunu ekleyerek güncelle) */
 .page-title {
-    background: var(--bg-darker);
-    padding: 6rem 0 2rem;
+    background: linear-gradient(135deg, #0a0a1a, #151530);
+    padding: 130px 0 50px 0; /* Üst padding artırıldı (Header için ~80px + eski 50px) */
     text-align: center;
+    /* margin-bottom: 40px; */ /* Bu kalabilir veya kaldırılabilir, isteğe bağlı */
+    /* margin-top: 80px; Bu satırı SİLİN veya YORUM SATIRI yapın, padding ile çözdük */
 }
 
+/* .page-title içindeki H1 için (opsiyonel, hizalama/boşluk ayarı) */
 .page-title h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 30px; /* Önceki değer 36px idi, bunu istediğiniz gibi ayarlayın */
+    margin-bottom: 0;
+    font-weight: 700;
+    color: #fff;
     font-family: 'Orbitron', sans-serif;
 }
 
-.breadcrumb {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #b8b8d4;
-}
-
-.breadcrumb a {
-    color: #b8b8d4;
-}
-
-.breadcrumb a:hover {
-    color: var(--secondary-color);
-}
-
-.breadcrumb .separator {
-    margin: 0 0.5rem;
-}
-
-.breadcrumb .current {
-    color: var(--secondary-color);
-}
+/* Breadcrumb CSS'ini Silebilirsiniz (artık kullanılmıyor) */
+/*
+.breadcrumb { ... }
+.breadcrumb a { ... }
+.breadcrumb a:hover { ... }
+.breadcrumb .separator { ... }
+.breadcrumb .current { ... }
+*/
 
 /* Products Section */
 .products-section {
@@ -2300,74 +2351,53 @@ footer {
 
 /* Cart Section */
 .cart-section {
-    padding: 4rem 0;
-    background-color: var(--bg-dark);
+    padding: 2rem 0 4rem;
 }
 
 .cart-container {
-    margin-bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-/* Cart Items */
-.cart-items {
-    background: var(--bg-light);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    margin-bottom: 1.5rem;
+.cart-table {
+    flex: 1 1 60%;
+    min-width: 300px;
 }
 
-.cart-header {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1.5fr 1fr 0.5fr;
-    padding: 1.2rem;
-    background: rgba(20, 20, 40, 0.5);
-    font-weight: 600;
+.cart-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th {
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-align: left;
+    font-weight: 500;
+}
+
+.cart-table td {
+    padding: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.cart-item {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1.5fr 1fr 0.5fr;
-    padding: 1.5rem 1.2rem;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.cart-item:last-child {
-    border-bottom: none;
-}
-
-.item-product {
+.cart-table .product-info {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
 }
 
-.item-image {
+.cart-table .product-info img {
     width: 80px;
     height: 80px;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-}
-
-.item-image img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    border-radius: 4px;
+    margin-right: 1rem;
 }
 
-.item-name {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.item-variant {
-    font-size: 0.9rem;
-    color: #b8b8d4;
-}
-
-.item-price, .item-subtotal {
-    font-weight: 500;
+.cart-table .product-details h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 .quantity-selector {
@@ -2377,140 +2407,146 @@ footer {
 }
 
 .quantity-btn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.05);
     border: none;
-    background: rgba(255, 255, 255, 0.1);
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: var(--transition);
 }
 
-.quantity-btn.minus {
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-}
-
-.quantity-btn.plus {
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
-}
-
 .quantity-btn:hover {
-    background: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .quantity-input {
     width: 40px;
-    height: 30px;
-    border: none;
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
+    height: 32px;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
-    appearance: textfield;
-    -moz-appearance: textfield;
-}
-
-.quantity-input::-webkit-inner-spin-button,
-.quantity-input::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    margin: 0 0.25rem;
 }
 
 .remove-btn {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    background: none;
     border: none;
-    background: rgba(255, 255, 255, 0.1);
     color: #ff5e62;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     transition: var(--transition);
+    margin-left: 1rem;
 }
 
 .remove-btn:hover {
-    background: #ff5e62;
-    color: white;
+    color: #ff8086;
+}
+
+.empty-cart-message {
+    padding: 80px 20px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: none;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.empty-cart-message p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+
+.empty-cart-message .btn {
+    padding: 14px 35px;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 /* Cart Actions */
 .cart-actions {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    margin: 2rem 0;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
 .coupon {
     display: flex;
-    gap: 0.5rem;
 }
 
 .coupon input {
-    padding: 0.8rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    width: 200px;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius);
     color: white;
-    font-family: 'Poppins', sans-serif;
-    min-width: 200px;
+    border-radius: 4px 0 0 4px;
 }
 
-.coupon input:focus {
-    outline: none;
-    border-color: var(--primary-color);
+.coupon button {
+    border-radius: 0 4px 4px 0;
 }
 
 /* Cart Summary */
-.cart-summary-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .cart-summary {
-    background: var(--bg-light);
+    flex: 1 1 30%;
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: var(--border-radius);
-    padding: 2rem;
-    width: 100%;
-    max-width: 400px;
+    padding: 1.5rem;
+    align-self: flex-start;
 }
 
 .cart-summary h2 {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .summary-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
 }
 
 .summary-row.total {
-    font-size: 1.2rem;
-    font-weight: 600;
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
-.checkout-btn-container {
-    margin-top: 2rem;
+.summary-row.total .summary-value {
+    color: var(--secondary-color);
+}
+
+.checkout-button-container {
+    margin-top: 1.5rem;
 }
 
 .checkout-btn {
+    display: block;
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(108, 66, 248, 0.3);
 }
 
 /* Related Products */
@@ -2518,3 +2554,631 @@ footer {
     padding: 5rem 0;
     background: var(--bg-light);
 }
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    transform: translateX(150%);
+    transition: transform 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.notification-content i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Search Modal Styles */
+.search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000 !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.search-modal.show {
+    opacity: 1;
+    display: block;
+}
+
+.search-modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    margin: 100px auto;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+}
+
+.search-modal.show .search-modal-content {
+    transform: translateY(0);
+}
+
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.search-header h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+}
+
+.close-search {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-search:hover {
+    color: var(--accent-color);
+}
+
+.search-form {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#searchButton {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#searchButton:hover {
+    background: var(--secondary-color);
+}
+
+.search-results {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.search-result-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.search-result-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.search-result-details {
+    flex: 1;
+}
+
+.search-result-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.search-result-details p {
+    margin: 0;
+    color: #4dabf7;
+    font-weight: bold;
+}
+
+/* User Modal Styles */
+.user-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999 !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.user-modal.show {
+    display: flex;
+}
+
+.user-modal-content {
+    background-color: #1a1d29;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+.close-user-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-user-modal:hover {
+    color: #fff;
+}
+
+.user-modal-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #4dabf7;
+}
+
+.tab-btn.active:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #4dabf7;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.form-group.remember-me,
+.form-group.terms {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.remember-me input,
+.form-group.terms input {
+    margin-right: 8px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #4dabf7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #339af0;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #4dabf7;
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Ana sayfa buton ve stil düzeltmeleri */
+.hero-section .btn,
+.hero-section a.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+}
+
+.hero-section .btn-primary,
+.shop-now,
+.featured-items {
+    background: linear-gradient(to right, #766cf1, #4dabf7);
+    color: white;
+    border: none;
+}
+
+.hero-section .btn-secondary,
+.featured-items {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-section .btn:hover,
+.shop-now:hover,
+.featured-items:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Pointer events düzeltmesi */
+.hero-text * {
+    pointer-events: auto !important;
+}
+
+.hero-buttons {
+    position: relative;
+    z-index: 100;
+}
+
+.hero-buttons a {
+    position: relative;
+    z-index: 100;
+}
+
+/* Buton stilleri */
+.hero-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 4px;
+    margin-right: 15px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    z-index: 100;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #766cf1, #4dabf7);
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 66, 248, 0.2);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Hover efektleri */
+.hero-btn:hover {
+    transform: translateY(-3px);
+}
+
+.primary-btn:hover {
+    box-shadow: 0 8px 20px rgba(108, 66, 248, 0.4);
+    background: linear-gradient(135deg, #8278f9, #5db8ff);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Checkout butonu için stil */
+.checkout-button-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(108, 66, 248, 0.3);
+}
+
+/* Boş Sepet Stilleri */
+.cart-section.is-empty .cart-table,
+.cart-section.is-empty .cart-actions {
+    display: none; /* Sepet boşken tabloyu ve aksiyonları gizle */
+}
+
+.cart-section:not(.is-empty) .empty-cart-message {
+    display: none; /* Sepet doluysa boş mesajını gizle */
+}
+
+.empty-cart-message {
+    text-align: center; /* İçeriği ortala */
+    padding: 80px 20px; /* Üstten ve alttan daha fazla boşluk */
+    background-color: rgba(255, 255, 255, 0.03); /* Hafif arkaplan */
+    border-radius: 10px; /* Köşeleri yuvarla */
+    margin-bottom: 30px; /* Alt boşluk */
+    display: none; /* Başlangıçta gizli (JS ile gösterilecek) */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* İnce bir kenarlık */
+}
+
+.empty-cart-message p {
+    font-size: 1.3rem; /* Yazı boyutunu biraz büyüt */
+    color: rgba(255, 255, 255, 0.8); /* Yazı rengi */
+    margin-bottom: 30px; /* Butonla arasına boşluk */
+}
+
+/* Boş sepet mesajındaki butonu stillendirme */
+.empty-cart-message .btn {
+    padding: 14px 35px; /* Buton iç boşluğunu ayarla */
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Quantity Control Güncellemesi */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08); /* Biraz daha belirgin arka plan */
+    border-radius: 6px; /* Daha yuvarlak köşeler */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* İnce kenarlık */
+    width: fit-content; /* İçeriğe göre genişlik */
+    overflow: hidden; /* Butonların taşmasını engelle */
+}
+
+.quantity-btn {
+    width: 36px; /* Genişlik */
+    height: 36px; /* Yükseklik */
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8); /* Biraz daha parlak renk */
+    font-size: 18px; /* İkon/işaret boyutu */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* Dikey hizalamayı iyileştirir */
+}
+
+.quantity-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Hover efekti */
+    color: #fff;
+}
+
+.quantity-input {
+    width: 45px; /* Genişlik */
+    height: 36px; /* Yükseklik */
+    text-align: center;
+    background: none;
+    border: none; /* İç kenarlıkları kaldır */
+    border-left: 1px solid rgba(255, 255, 255, 0.1); /* Sol ayırıcı */
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* Sağ ayırıcı */
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 5px; /* İç boşluk */
+    /* Input oklarını gizle (isteğe bağlı) */
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Kupon Alanı ve Butonu Güncellemesi */
+.coupon-container {
+    display: flex; /* Input ve butonu yan yana getir */
+    align-items: center; /* Dikeyde ortala */
+}
+
+.coupon-input {
+    flex-grow: 1; /* Mümkün olduğunca genişlesin */
+    padding: 12px 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 6px 0 0 6px; /* Sol köşeleri yuvarla */
+    height: 44px; /* Butonla aynı yükseklik */
+    box-sizing: border-box; /* Padding ve border dahil yükseklik */
+}
+
+.apply-coupon-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border: none;
+    padding: 0 25px; /* Sadece yatay padding */
+    border-radius: 0 6px 6px 0; /* Sağ köşeleri yuvarla */
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    white-space: nowrap; /* Yazının alt satıra geçmesini engelle */
+    height: 44px; /* Input ile aynı yükseklik */
+    box-sizing: border-box; /* Padding ve border dahil yükseklik */
+    line-height: 44px; /* Yazıyı dikeyde ortala */
+}
+
+.apply-coupon-btn:hover {
+    filter: brightness(1.1); /* Hover'da hafif parlaklık */
+    box-shadow: 0 4px 10px rgba(108, 66, 248, 0.2); /* Hafif gölge */
+}
+
+/* ================== FOOTER DÜZELTMELERİ (Daha Spesifik) ================== */
+
+/* Sadece footer içindeki .footer-top'u hedefle */
+footer .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 30px; /* Satır ve sütun boşlukları */
+    margin-bottom: 40px;
+}
+
+/* Sadece footer içindeki .footer-column'ları hedefle */
+footer .footer-column {
+    flex: 1 1 220px; /* Esneklik ve temel genişlik */
+    min-width: 200px;
+}
+/* Footer içindeki ilk sütun */
+footer .footer-column:first-child {
+    flex-basis: 250px; /* Gerekirse temel genişliği ayarla */
+}
+/* Footer içindeki son sütun (Subscribe) */
+footer .footer-column:last-child {
+     flex-basis: 280px; /* Gerekirse temel genişliği ayarla */
+}
+
+
+/* Sadece footer içindeki .newsletter-form'u hedefle */
+footer .newsletter-form {
+    display: flex;
+    height: 46px; /* Sabit yükseklik */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Sadece footer içindeki .newsletter-form input'unu hedefle */
+footer .newsletter-form input[type="email"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    color: #fff;
+    height: 100%;
+    box-sizing: border-box;
+    min-width: 100px; /* Genişliği ayarla */
+}
+footer .newsletter-form input[type="email"]::placeholder{
+     color: rgba(255, 255, 255, 0.5);
+     font-size: 14px;
+}
+
+/* Sadece footer içindeki .newsletter-form butonunu hedefle */
+footer .newsletter-form button[type="submit"] {
+    flex-shrink: 0; /* Küçülmeyi engelle */
+    width: auto; /* İçeriğe göre otomatik genişlik */
+    padding: 0 18px; /* Buton içi yan boşluklar */
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+footer .newsletter-form button[type="submit"]:hover {
+    filter: brightness(1.15);
+}
+
+/* Footer alt bölümü için mevcut stiller genellikle sorun çıkarmaz ama emin olmak için: */
+footer .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+footer .payment-methods {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+/* ================== FOOTER DÜZELTMELERİ SONU ================== */

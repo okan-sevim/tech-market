@@ -49,7 +49,7 @@
                 </nav>
                 
                 <div class="header-icons">
-                    <div class="search-icon">
+                    <div class="search-icon" onclick="openSearchModal(); return false;">
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="user-icon">
@@ -76,9 +76,9 @@
                 <div class="hero-text">
                     <h1>Future <span class="highlight">Technology</span><br>In Your Hands</h1>
                     <p>Experience the latest tech products and accessories that will transform your digital lifestyle.</p>
-                    <div class="hero-buttons">
-                        <a href="products.html" class="btn btn-primary">Shop Now</a>
-                        <a href="#featured" class="btn btn-secondary">Featured Items</a>
+                    <div class="hero-buttons" style="margin-top: 20px;">
+                        <a id="shopNowButton" href="products.html" class="hero-btn primary-btn">Shop Now</a>
+                        <a id="featuredButton" href="products.html#featured" class="hero-btn secondary-btn">Featured Items</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -356,6 +356,191 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-modal-content">
+            <div class="search-header">
+                <h3>Search Products</h3>
+                <span class="close-search">&times;</span>
+            </div>
+            <div class="search-form">
+                <input type="text" id="searchInput" placeholder="Type to search...">
+                <button id="searchButton">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="search-results">
+                <!-- Results will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // DOM yüklendikten hemen sonra butonları bağla
+    document.addEventListener('DOMContentLoaded', function() {
+        // Butonları ID ile seç
+        var shopNowBtn = document.getElementById('shopNowButton');
+        var featuredBtn = document.getElementById('featuredButton');
+        
+        // Shop Now butonu için
+        if (shopNowBtn) {
+            shopNowBtn.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Shop Now butonuna tıklandı");
+                window.location.href = 'products.html';
+                return false;
+            };
+        }
+        
+        // Featured Items butonu için
+        if (featuredBtn) {
+            featuredBtn.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Featured Items butonuna tıklandı");
+                window.location.href = 'products.html#featured';
+                return false;
+            };
+        }
+        
+        console.log("Butonlar kullanıma hazır!");
+    });
+
+    // Yükleme tamamlandıktan 1 saniye sonra tekrar kontrol et
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            // Ertelenmiş olarak tekrar butona tıklama olayını bağla
+            document.getElementById('shopNowButton').onclick = function() {
+                console.log("Shop Now - ertelenmiş tıklama");
+                window.location.href = 'products.html';
+                return false;
+            };
+            
+            document.getElementById('featuredButton').onclick = function() {
+                console.log("Featured Items - ertelenmiş tıklama");
+                window.location.href = 'products.html#featured';
+                return false;
+            };
+        }, 1000);
+    });
+
+    // En güvenilir yöntem - direkt butonlara hardcoded URL bağla
+    function goToProducts() {
+        window.location.href = 'products.html';
+    }
+
+    function goToFeatured() {
+        window.location.href = 'products.html#featured';
+    }
+
+    // Search modalını düzeltme
+    document.addEventListener('DOMContentLoaded', function() {
+        // openSearchModal fonksiyonunu global olarak tanımla
+        window.openSearchModal = function() {
+            console.log("Search modal açılıyor");
+            const searchModal = document.getElementById('searchModal');
+            if (searchModal) {
+                searchModal.classList.add('show');
+            } else {
+                console.error("Search modal bulunamadı!");
+            }
+        };
+        
+        // Search icon için event listener
+        document.querySelectorAll('.search-icon, .fa-search').forEach(function(icon) {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Search ikonuna tıklandı");
+                openSearchModal();
+                return false;
+            });
+        });
+        
+        // Search modal içindeki butonlar için event listener'ları yenile
+        setTimeout(function() {
+            const searchModal = document.getElementById('searchModal');
+            if (searchModal) {
+                // Kapatma butonu
+                const closeBtn = searchModal.querySelector('.close-search');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        searchModal.classList.remove('show');
+                    });
+                }
+                
+                // Arama butonu
+                const searchButton = searchModal.querySelector('#searchButton');
+                const searchInput = searchModal.querySelector('#searchInput');
+                if (searchButton && searchInput) {
+                    searchButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const searchResults = searchModal.querySelector('.search-results');
+                        performSearch(searchInput.value, searchResults);
+                    });
+                    
+                    searchInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const searchResults = searchModal.querySelector('.search-results');
+                            performSearch(searchInput.value, searchResults);
+                        }
+                    });
+                }
+            }
+        }, 500);
+        
+        // Arama fonksiyonu
+        window.performSearch = function(query, resultsContainer) {
+            query = query.trim();
+            console.log("Arama yapılıyor:", query);
+            
+            if (query.length < 2) {
+                resultsContainer.innerHTML = '<p>Please enter at least 2 characters</p>';
+                return;
+            }
+            
+            // Örnek ürünler
+            const products = [
+                { id: 1, name: 'Ultra HD 4K Smartphone', price: '$799.99', image: 'images/product1.jpg' },
+                { id: 2, name: 'Wireless Headphones Pro', price: '$249.99', image: 'images/product2.jpg' },
+                { id: 3, name: 'Ultra Thin Gaming Laptop', price: '$1,299.99', image: 'images/product3.jpg' },
+                { id: 4, name: 'Smart Watch Pro Series', price: '$349.99', image: 'images/product4.jpg' }
+            ];
+            
+            const results = products.filter(product => 
+                product.name.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>No products found</p>';
+            } else {
+                let html = '';
+                results.forEach(product => {
+                    html += `
+                    <div class="search-result-item">
+                        <img src="${product.image}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
+                        <div class="search-result-details">
+                            <h4>${product.name}</h4>
+                            <p>${product.price}</p>
+                        </div>
+                    </div>`;
+                });
+                resultsContainer.innerHTML = html;
+                
+                const items = resultsContainer.querySelectorAll('.search-result-item');
+                items.forEach((item, index) => {
+                    item.addEventListener('click', function() {
+                        window.location.href = `product-detail.html?id=${results[index].id}`;
+                    });
+                });
+            }
+        };
+    });
+    </script>
 </body>
 </html>

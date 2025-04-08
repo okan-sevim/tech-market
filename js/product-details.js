@@ -92,4 +92,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Buy Now butonu
+    const buyNowBtn = document.querySelector('.buy-now');
+    if (buyNowBtn) {
+        buyNowBtn.addEventListener('click', function() {
+            // Önce sepete ekle
+            const addToCartBtn = document.querySelector('.add-to-cart');
+            if (addToCartBtn) {
+                // Add to Cart butonuna tıklama olayını tetikle
+                addToCartBtn.click();
+            }
+            
+            // Doğrudan checkout sayfasına yönlendir
+            setTimeout(() => {
+                window.location.href = 'checkout.html';
+            }, 500);
+        });
+    }
 });
