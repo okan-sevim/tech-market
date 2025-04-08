@@ -3181,4 +3181,616 @@ footer .payment-methods {
     gap: 12px;
     align-items: center;
 }
-/* ================== FOOTER DÜZELTMELERİ SONU ================== */
+
+ /* Checkout sayfası için ek stiller */
+ .checkout-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.checkout-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.order-summary {
+    width: 350px; /* Sabit genişlik veya % olarak ayarlanabilir */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Kenarlık eklendi */
+
+    /* Sticky Positioning */
+    position: sticky;
+    top: 100px; /* Header yüksekliği + istenen boşluk */
+    align-self: flex-start; /* Flex container içinde üste hizala */
+    height: fit-content; /* İçeriğe göre yükseklik */
+}
+
+.checkout-steps {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    opacity: 0.5;
+    transition: var(--transition);
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    margin-right: 0.75rem;
+}
+
+.checkout-section {
+    margin-bottom: 2rem;
+}
+
+.checkout-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.checkout-section h3 i {
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #b8b8d4;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(44, 206, 242, 0.2);
+}
+
+.radio-option {
+    display: flex;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.radio-option:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.radio-option input {
+    margin-right: 15px;
+}
+
+.option-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.option-description {
+    font-size: 0.85rem;
+    color: #b8b8d4;
+}
+
+.option-price {
+    margin-left: auto;
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.summary-total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.summary-total .price {
+    color: var(--secondary-color);
+}
+
+.checkout-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-to-cart {
+    color: #b8b8d4;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.back-to-cart i {
+    margin-right: 5px;
+}
+
+.back-to-cart:hover {
+    color: white;
+}
+
+/* Adım nav kontrolü */
+.checkout-step {
+    display: none;
+}
+
+.checkout-step.active {
+    display: block;
+}
+
+/* Checkout Sipariş Özeti Ürünleri */
+.summary-product {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.summary-product:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.summary-product-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative; /* Miktar etiketi için */
+    flex-shrink: 0;
+}
+.summary-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.summary-product-quantity {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--secondary-color);
+    color: var(--bg-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.summary-product-info {
+    flex-grow: 1; /* Ortadaki alanı doldur */
+    font-size: 0.9rem;
+}
+.summary-product-name {
+    margin-bottom: 3px;
+    font-weight: 500;
+}
+
+.summary-product-total {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Checkout Adım Butonları */
+.checkout-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Küçük ekranlar için */
+    gap: 10px;
+}
+
+.checkout-actions .back-btn,
+.checkout-actions .back-to-cart {
+    color: #b8b8d4;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    background: none; /* Geri butonları için */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.checkout-actions .back-btn i,
+.checkout-actions .back-to-cart i {
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+
+.checkout-actions .back-btn:hover,
+.checkout-actions .back-to-cart:hover {
+    color: white;
+}
+
+/* Sipariş Özeti - Ürün Miktarı Stili */
+.summary-product-qty {
+    font-size: 0.85rem; /* Biraz daha küçük yazı */
+    color: rgba(255, 255, 255, 0.6); /* Hafif soluk renk */
+    margin-top: 4px; /* Ürün adıyla arasına boşluk */
+}
+
+/* Ürün adı ve miktar arasındaki boşluğu ayarlamak için (opsiyonel) */
+.summary-product-name {
+    margin-bottom: 0; /* Gerekirse alt boşluğu azalt */
+}
+
+/* Kargo Seçeneği Stilleri */
+.radio-option {
+    display: flex; /* İçerikleri yan yana getir */
+    align-items: flex-start; /* Dikeyde üste hizala (uzun açıklamalarda daha iyi) */
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px; /* Köşeleri yuvarla */
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; /* İçerideki label için */
+}
+
+.radio-option:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(44, 206, 242, 0.5); /* Hover'da kenarlık rengi */
+}
+
+/* Gerçek radio butonu gizle */
+.radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Sahte radio butonu (Dış Daire) */
+.radio-option label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Kenarlık rengi */
+    border-radius: 50%;
+    margin-right: 15px;
+    vertical-align: top; /* Metinle aynı hizada başlasın */
+    transition: all 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.1); /* İç arka plan */
+    flex-shrink: 0; /* Küçülmesini engelle */
+    margin-top: 2px; /* Metinle dikey hizalamayı ayarla */
+}
+
+/* Seçili olduğunda dış dairenin görünümü (İçi dolu olacak şekilde güncellendi) */
+.radio-option input[type="radio"]:checked + label::before {
+    border-color: var(--secondary-color); /* Kenarlık rengi aynı kalsın */
+    background-color: var(--secondary-color); /* Arka planı da aynı renkle doldur */
+}
+
+/* Sahte radio butonu (İç Nokta) */
+.radio-option label::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--secondary-color); /* Nokta rengi */
+    position: absolute;
+    top: 21px; /* Dış dairenin içine ortala (15px padding + 2px border + (18px-10px)/2) */
+    left: 21px; /* Dış dairenin içine ortala (15px padding + 2px border + (18px-10px)/2) */
+    opacity: 0; /* Başlangıçta gizli */
+    transform: scale(0.5);
+    transition: all 0.2s ease;
+}
+
+/* Seçili olduğunda iç noktayı göster */
+.radio-option input[type="radio"]:checked + label::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Label içeriğini düzenle */
+.radio-option label {
+    display: flex; /* İçindeki div'leri yan yana getir */
+    flex-grow: 1; /* Kalan alanı doldur */
+    cursor: pointer;
+    align-items: flex-start; /* Dikey hizalama */
+}
+
+.radio-option .option-details {
+     flex-grow: 1; /* Orta kısmı genişlet */
+}
+
+.option-name {
+    font-weight: 500;
+    margin-bottom: 3px;
+    display: block; /* Alt satıra geçmesini sağla */
+    color: #fff; /* Daha belirgin renk */
+}
+
+.option-description {
+    font-size: 0.85rem;
+    color: #b8b8d4;
+    display: block; /* Alt satıra geçmesini sağla */
+    line-height: 1.4;
+}
+
+.option-price {
+    margin-left: 15px; /* Sağdaki fiyatla arasına boşluk */
+    font-weight: 600; /* Daha kalın */
+    color: var(--secondary-color);
+    white-space: nowrap; /* Fiyatın alt satıra geçmesini engelle */
+    align-self: center; /* Dikeyde ortala */
+}
+
+/* Sipariş Özeti Stilleri (Sticky özelliği eklendi) */
+.order-summary {
+    width: 350px; /* Sabit genişlik veya % olarak ayarlanabilir */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Kenarlık eklendi */
+
+    /* Sticky Positioning */
+    position: sticky;
+    top: 100px; /* Header yüksekliği + istenen boşluk */
+    align-self: flex-start; /* Flex container içinde üste hizala */
+    height: fit-content; /* İçeriğe göre yükseklik */
+}
+
+/* Ana Checkout Konteynerinin Flex olduğundan emin olun */
+.checkout-container {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlar için */
+    gap: 30px;
+    align-items: flex-start; /* Sticky elemanın doğru çalışması için önemli */
+}
+
+/* Checkout - Ödeme Seçenekleri */
+.payment-option label {
+    align-items: center; /* İçerikleri dikeyde ortala */
+}
+
+.payment-icons {
+    margin-left: 15px; /* Sağdaki ikonlarla arasına boşluk */
+    display: flex;
+    gap: 8px;
+    font-size: 1.6rem; /* İkon boyutunu ayarla */
+    color: rgba(255, 255, 255, 0.6); /* İkon rengi */
+}
+
+.payment-form-details {
+    padding: 20px;
+    margin-top: -10px; /* Üstteki radio option ile boşluğu azalt */
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.03); /* Hafif farklı arka plan */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none; /* Üst kenarlığı kaldır */
+    border-radius: 0 0 6px 6px; /* Alt köşeleri yuvarla */
+}
+
+/* Fatura Adresi Checkbox */
+.billing-address-toggle {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+.billing-address-toggle input[type="checkbox"] {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--secondary-color); /* Checkbox rengi */
+}
+.billing-address-toggle label {
+    margin-bottom: 0; /* Ekstra boşluğu kaldır */
+    color: #fff; /* Label rengi */
+    font-weight: 500;
+}
+
+/* Fatura Adresi Formu Detayları */
+.billing-address-details {
+    padding: 20px;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+}
+
+/* ================== CHECKOUT RADIO BUTON DÜZELTMESİ ================== */
+
+/* Genel radio butonu kutusu */
+.radio-option {
+    display: flex;
+    align-items: flex-start; /* İçeriği üste hizala */
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; /* Label içindeki absolute konumlandırma için */
+}
+
+.radio-option:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(44, 206, 242, 0.5);
+}
+
+/* Gerçek radio butonu tamamen gizle */
+.radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none; /* Tıklanamaz yap */
+}
+
+/* Tıklanabilir Label Alanı */
+.radio-option label {
+    display: flex;
+    flex-grow: 1;
+    align-items: center; /* Dikey hizalamayı ortala */
+    cursor: pointer;
+    position: relative; /* ::before ve ::after için referans */
+    padding-left: 30px; /* Sahte buton için yer aç */
+    min-height: 22px; /* Minimum yükseklik */
+}
+
+/* Sahte Dış Daire (::before) */
+.radio-option label::before {
+    content: '';
+    position: absolute;
+    left: 0; /* Label'ın soluna */
+    top: 50%; /* Dikeyde ortala */
+    transform: translateY(-50%); /* Tam dikey ortalama */
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* Border dahil boyut */
+}
+
+/* Seçili Dış Daire */
+.radio-option input[type="radio"]:checked + label::before {
+    border-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* İçini doldur */
+}
+
+/* Sahte İç Nokta (::after) - YENİDEN KONUMLANDIRMA */
+.radio-option label::after {
+    content: '';
+    position: absolute;
+    /* ::before'un merkezine göre konumlanacak */
+    left: 9px;  /* (18px / 2) */
+    top: 50%; /* Dikeyde ortala */
+
+    width: 8px; /* İç nokta boyutu */
+    height: 8px; /* İç nokta boyutu */
+    border-radius: 50%;
+    background-color: #0f0f1e; /* İç rengi (arka planla aynı veya beyaz olabilir) */
+
+    opacity: 0; /* Başlangıçta gizli */
+    /* Kendi merkezine göre hizala ve başlangıçta küçük yap */
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Seçili İç Nokta */
+.radio-option input[type="radio"]:checked + label::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* Görünür yap ve büyüt */
+}
+
+/* Label İçeriği Hizalamaları */
+.radio-option .option-details {
+     flex-grow: 1; /* Ortadaki metin alanını genişlet */
+     line-height: 1.4; /* Satır yüksekliği */
+}
+.radio-option .option-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+    display: block;
+    color: #fff;
+}
+.radio-option .option-description {
+    font-size: 0.85rem;
+    color: #b8b8d4;
+    display: block;
+}
+
+/* Ödeme Simgeleri ve Fiyat */
+.radio-option .payment-icons,
+.radio-option .option-price {
+    margin-left: 15px;
+    flex-shrink: 0; /* Küçülmelerini engelle */
+    white-space: nowrap;
+}
+.radio-option .payment-icons {
+    display: flex;
+    gap: 8px;
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+.radio-option .option-price {
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 1rem; /* Gerekirse boyut ayarı */
+}
+
+
+/* ================== //CHECKOUT RADIO BUTON DÜZELTMESİ SONU ================== */
