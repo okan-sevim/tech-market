@@ -40,10 +40,10 @@ ul {
 }
 
 .container {
-    width: 100%;
-    max-width: 1300px;
+    max-width: 1300px; /* Sitenizin standart maksimum genişliği */
     margin: 0 auto;
     padding: 0 2rem;
+    width: 100%; /* Kapsayıcının tam genişlikte olmasını sağla */
 }
 
 .highlight {
@@ -2376,11 +2376,15 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    align-items: flex-start;
+    width: 100%; /* Ana container içinde kalmasını sağla */
 }
 
 .cart-table {
-    flex: 1 1 60%;
-    min-width: 300px;
+    flex: 1 1 auto; /* Esnek büyüme, küçülme, otomatik temel genişlik */
+    /* Önceki 'flex: 1 1 60%;' kuralını bu şekilde değiştirmek daha esnek olabilir */
+    min-width: 0; /* Flex item'in çok küçülmesini engellemek yerine sıfırlama */
+    /* max-width: calc(100% - 320px - 2rem); */ /* İsteğe bağlı: Sağ sütun ve boşluk kadar daraltma */
 }
 
 .cart-table table {
@@ -2511,11 +2515,18 @@ footer {
 
 /* Cart Summary */
 .cart-summary {
-    flex: 1 1 30%;
+    flex: 0 0 320px; /* Sabit genişlik */
+    /* Diğer sticky stilleri (position, top, max-height, overflow-y) kalmalı */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    /* Diğer background, padding, border stilleri kalmalı */
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: var(--border-radius);
     padding: 1.5rem;
-    align-self: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .cart-summary h2 {
@@ -3836,7 +3847,7 @@ footer .payment-methods {
     /* Not: Padding gibi bazı stiller <option> üzerinde her tarayıcıda çalışmayabilir. */
 }
 
-/* Seçili değeri gösteren select kutusunun stilini teyit edelim */
+/* Seçili değeri gösteren select kutusunun stili */
 .form-group select {
     background-color: rgba(255, 255, 255, 0.05); /* Zaten böyle olmalı */
     color: white; /* Seçili değerin rengi */
@@ -3940,3 +3951,200 @@ footer .payment-methods {
     box-sizing: border-box;
     /* Gerekirse input ve butona sabit bir height verilebilir, örn: height: 48px; */
 }
+
+/* style.css - Sepet Sayfası Sağ Sütun Yapışkan Hale Getirme */
+
+/* Sepet bölümünün ana konteynerine (genellikle flex veya grid kullanılır) */
+/* Esnek öğelerin dikeyde yukarı hizalanmasını sağlar */
+.cart-section .container > div, /* Direkt container altındaki div ise */
+.cart-section .cart-wrapper,   /* veya özel bir sarmalayıcı varsa */
+.cart-section .row {           /* veya bir satır yapısı kullanılıyorsa */
+    align-items: flex-start; /* Öğeleri dikeyde başa hizala */
+}
+
+/* Sağ sütunu (Özet ve İşlemler) içeren bölümü seç */
+/* HTML yapınıza göre bu seçiciyi güncellemeniz gerekebilir */
+.cart-collaterals,
+.cart-summary-box, /* veya hangi class kullanılıyorsa */
+.cart-actions-summary-wrapper { /* Veya bu isimde bir sarmalayıcı varsa */
+    position: -webkit-sticky; /* Safari için */
+    position: sticky;
+    top: 100px; /* Header yüksekliğine göre ayarlayın, header'ın altına yapışması için */
+    /* İsteğe bağlı: Sağ sütunun genişliğini sabitleyebilirsiniz */
+    /* width: 300px; */ /* veya yüzde olarak width: 30%; */
+    /* İsteğe bağlı: Sağ sütunun çok uzamasını engellemek için */
+    /* max-height: calc(100vh - 120px); */ /* Ekran yüksekliğinden biraz boşluk bırak */
+    /* overflow-y: auto; */ /* Eğer max-height kullanılırsa scroll ekle */
+}
+
+/* Mobil cihazlarda sticky davranışı istenmeyebilir, gerekirse devre dışı bırakın */
+@media (max-width: 991px) { /* Tablet ve altı için */
+    .cart-collaterals,
+    .cart-summary-box,
+    .cart-actions-summary-wrapper {
+        position: static; /* Sticky'i kaldır */
+        top: auto;
+    }
+    .cart-section .container > div,
+    .cart-section .cart-wrapper,
+    .cart-section .row {
+        align-items: stretch; /* Hizalamayı varsayılana döndür */
+    }
+}
+
+/* style.css - Sepet Sayfası Sağ Sütun Yapışkan ve Buton Düzeltmeleri (v2) */
+
+/* --- Ana Konteyner Ayarları --- */
+.cart-container {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlar için alta geçsin */
+    gap: 2rem;
+    align-items: flex-start; /* Sticky elemanın doğru çalışması için önemli */
+}
+
+/* --- Sağdaki Sepet Özeti Kutusu (Sticky) --- */
+.cart-summary {
+    /* Genişlik ayarı (isteğe bağlı, yüzdeli veya sabit olabilir) */
+     flex: 0 0 320px; /* Büyümesin, küçülmesin, genişlik 320px olsun */
+     /* VEYA width: 320px; */
+     /* VEYA flex-basis: 30%; */
+
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    /* Sticky Positioning */
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 100px; /* Header yüksekliğine göre ayarlayın */
+
+    /* İçerik taşarsa scroll */
+    max-height: calc(100vh - 120px); /* Ekran yüksekliğinden boşluk bırak */
+    overflow-y: auto; /* Dikey scrollbar göster */
+}
+
+/* --- Kupon ve Güncelleme Butonları Alanı (.cart-actions) --- */
+/* Bu alan şimdilik sticky DEĞİL, çünkü HTML'de ayrı yerde */
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Buton ve input'u dikeyde hizala */
+    margin: 2rem 0; /* Üst ve alt boşluk */
+    flex-basis: 100%; /* Tablonun altında tam genişlik kaplasın */
+    flex-wrap: wrap; /* Küçük ekranda alta geçsin */
+    gap: 1rem; /* Öğeler arasına boşluk */
+}
+
+.coupon {
+    display: flex; /* Input ve butonu yan yana getir */
+}
+
+.coupon input#coupon-code { /* ID ile hedefle */
+    width: 200px; /* Veya flex-grow: 1; */
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 4px 0 0 4px;
+    height: 44px; /* Yüksekliği eşitle */
+    box-sizing: border-box;
+}
+
+.coupon button#apply-coupon { /* ID ile hedefle */
+    border-radius: 0 4px 4px 0;
+    background: var(--secondary-color); /* Farklı bir renk veya stil */
+    color: var(--bg-dark);
+    border: none;
+    padding: 0 1.5rem;
+    height: 44px;
+    cursor: pointer;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+.coupon button#apply-coupon:hover {
+     filter: brightness(1.1);
+}
+
+/* --- Update Cart Butonu Boyutu (#update-cart) --- */
+#update-cart { /* Doğru ID ile hedefle */
+    padding: 0.75rem 1.5rem; /* İç boşluğu küçült (yüksekliği 44px civarı olur) */
+    font-size: 0.9rem;      /* Yazı boyutunu biraz küçült */
+    width: auto;             /* Genişlik içeriğe göre ayarlansın */
+    height: 44px;            /* Diğer butonlarla aynı yükseklik */
+    line-height: normal;     /* Dikey hizalamayı sıfırla */
+    /* Mevcut btn-primary stillerini korur (background, color vs.) */
+}
+
+/* --- Mobil Cihazlar İçin Ayarlamalar --- */
+@media (max-width: 991px) { /* Sticky özelliğini kaldır */
+    .cart-summary {
+        position: static;
+        top: auto;
+        max-height: none;
+        overflow-y: visible;
+        flex-basis: 100%; /* Mobilde tam genişlik */
+        margin-top: 1rem; /* Üstteki elemanla boşluk */
+    }
+
+    .cart-container {
+        align-items: stretch; /* Hizalamayı varsayılana döndür */
+    }
+
+     /* Mobilde butonları tam genişlik yap (isteğe bağlı) */
+    .cart-actions {
+        flex-direction: column; /* Butonları alt alta getir */
+        align-items: stretch; /* Tam genişlik kaplasınlar */
+    }
+    .coupon {
+        width: 100%; /* Kupon alanı tam genişlik */
+    }
+     #update-cart {
+        width: 100%;
+     }
+}
+
+/* style.css - Update Cart Butonu Hover Efekti Yavaşlatma */
+
+#update-cart {
+    /* Mevcut stilleriniz (padding, font-size, width, height vb.) */
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    width: auto;
+    height: 44px;
+    line-height: normal;
+
+    /* --- YENİ EKLENEN SATIR --- */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    /* VEYA sadece 'transition: all 0.3s ease;' de kullanabilirsiniz */
+    /* --- /YENİ EKLENEN SATIR --- */
+}
+
+/* Eğer hover için özel bir kuralınız varsa, o da kalmalı */
+/* Örneğin: */
+/*
+#update-cart:hover {
+    background-color: ...;
+    transform: translateY(-2px);
+    box-shadow: ...;
+}
+*/
+
+/* Eğer #update-cart için özel bir kural yoksa ve .btn-primary'den geliyorsa,
+   .btn-primary kuralına transition ekleyebilirsiniz: */
+/*
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(108, 66, 248, 0.4);
+
+    transition: all 0.3s ease; // Buraya ekleyin
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(108, 66, 248, 0.6);
+    // Hover'da background değişiyorsa o da burada tanımlı olmalı
+}
+*/

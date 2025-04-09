@@ -29,6 +29,37 @@ window.addEventListener('scroll', function() {
     }
 });
 
+// Fonksiyonu global alanda tanımlayabiliriz
+function updateCartCountHeader() {
+    try {
+        const cart = JSON.parse(localStorage.getItem('techMarketCart')) || [];
+        const totalItems = cart.reduce((total, item) => {
+            // Miktarın geçerli bir sayı olduğundan emin olalım
+            const quantity = parseInt(item.quantity);
+            return total + (isNaN(quantity) ? 0 : quantity);
+        }, 0);
+
+        // Header'daki tüm cart-count elementlerini seç (birden fazla olabilir)
+        const cartCountElements = document.querySelectorAll('.cart-count');
+
+        cartCountElements.forEach(el => {
+            if (el) {
+                el.textContent = totalItems;
+                 // Sepet boşsa sayacı gizle, doluysa göster (isteğe bağlı stil)
+                 // el.style.display = totalItems > 0 ? 'flex' : 'none';
+            } else {
+                console.warn("Header cart count element not found.");
+            }
+        });
+    } catch (error) {
+        console.error("Error updating cart count:", error);
+        // Hata durumunda sayacı sıfırla veya gizle
+         document.querySelectorAll('.cart-count').forEach(el => {
+             if(el) el.textContent = '0';
+         });
+    }
+}
+
 // Ana site fonksiyonları
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM yüklendi - site fonksiyonları başlatılıyor");
@@ -258,24 +289,46 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Ürün nesnesi oluştur
             const product = {
-                id: Date.now().toString(),
+                id: this.dataset.productId || Date.now().toString(),
                 name: productName,
                 price: parseFloat(productPrice),
                 image: productImage,
                 quantity: quantity
             };
             
-            // Sepete ekle
+            // Sepete ekle (Mevcut ürünü kontrol et, varsa miktarını artır)
             let cart = JSON.parse(localStorage.getItem('techMarketCart')) || [];
-            cart.push(product);
+            const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+            if (existingProductIndex > -1) {
+                // Ürün zaten sepette, miktarını artır
+                cart[existingProductIndex].quantity += product.quantity;
+            } else {
+                // Yeni ürün, sepete ekle
+                cart.push(product);
+            }
+
             localStorage.setItem('techMarketCart', JSON.stringify(cart));
             
             // Sepet sayısını güncelle
-            updateCartCount();
+            updateCartCountHeader();
             
-            // Bildirim göster
-            alert('Product added to cart!');
+            // Daha şık bir bildirim örneği (CSS/HTML gerektirir)
+            showNotification(`${product.name} added to cart!`);
         });
+    }
+    
+    // Basit bildirim fonksiyonu örneği
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification'; // CSS'te stil tanımla
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        // Bildirimi birkaç saniye sonra kaldır
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
     }
     
     console.log("Ana site fonksiyonları yüklendi");
